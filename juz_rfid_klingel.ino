@@ -28,7 +28,7 @@ byte nuidPICC[3];
 bool accessGranted = false;
 char accessGrantedFor[20];
 
-byte bekannteKarten[13][4] =
+byte bekannteKarten[14][4] =
 {
   { 0x32, 0x8E, 0x15, 0xDB },   // ID = 100 / Karte
   { 0x04, 0x3E, 0xF1, 0xBA },   // ID = 101 / Karte
@@ -43,10 +43,11 @@ byte bekannteKarten[13][4] =
   { 0x5E, 0xC5, 0x42, 0x77 },   // ID = 204 / Schlüssel
   { 0x84, 0x5E, 0xAB, 0x4D },   // ID = 205 / Schlüssel
   { 0xCE, 0x65, 0x45, 0x77 },   // ID = 206 / Schlüssel
-  { 0x3C, 0x64, 0x7D, 0x22 }    // ID = 207 / Schlüssel
+  { 0x3C, 0x64, 0x7D, 0x22 },   // ID = 207 / Schlüssel
+  { 0xA4, 0xA3, 0x5F, 0xA7 }    // ID = 208 / Schlüssel
 };
 
-char bekannteUser[13][20] =
+char bekannteUser[14][20] =
 {
   { "Stefan" },         // ID = 100
   { "Haiko" },          // ID = 101
@@ -56,12 +57,13 @@ char bekannteUser[13][20] =
   { "neue 105" },       // ID = 105
   
   { "neue 201" },       // ID = 201
-  { "neue 202" },  	    // ID = 202
-  { "neue 203" },  	    // ID = 203
-  { "neue 204" },  	    // ID = 204
-  { "neue 205" },  	    // ID = 205
-  { "neue 206" },  	    // ID = 206
-  { "neue 207" }   	    // ID = 207
+  { "neue 202" },       // ID = 202
+  { "neue 203" },       // ID = 203
+  { "neue 204" },       // ID = 204
+  { "neue 205" },       // ID = 205
+  { "neue 206" },       // ID = 206
+  { "neue 207" },       // ID = 207
+  { "Tobi" }            // ID = 208
 };
 
 void setup() {
@@ -84,6 +86,8 @@ void setup() {
   }
 
   u8g.sleepOn();
+
+  Serial.println("Start main loop.");
 }
 
 void loop() {
@@ -93,7 +97,9 @@ void loop() {
 
   // Look for new cards
   if ( ! rfid.PICC_IsNewCardPresent())
+  {
     return;
+  }
 
   Serial.println("NewCard, trie to READ");
   
@@ -160,7 +166,7 @@ void loop() {
   }
   else
   {
-    Serial.println(F("Nur ruhig Brauner."));
+    Serial.println(F("Nur ruhig Brauner. Immer das selbe mit den Typen in den braunen Uniformen."));
     ledError();
   }
 
