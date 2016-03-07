@@ -28,7 +28,12 @@ byte nuidPICC[3];
 bool accessGranted = false;
 char accessGrantedFor[20];
 
-byte bekannteKarten[14][4] =
+// ATTENTION !!!!!!
+// if you uncomment a key, don't forget to update the numberKeysAssignedToPeople variable!!!!
+
+int numberKeysAssignedToPeople = 8;
+
+byte bekannteKarten[numberKeysAssignedToPeople][4] =
 {
   { 0x32, 0x8E, 0x15, 0xDB },   // ID = 100 / Karte
   { 0x04, 0x3E, 0xF1, 0xBA },   // ID = 101 / Karte
@@ -37,8 +42,8 @@ byte bekannteKarten[14][4] =
   { 0x04, 0x78, 0xD2, 0xBA },   // ID = 104 / Karte
   //{ 0x04, 0x55, 0x90, 0x7A },   // ID = 105 / Karte
   
-  //{ 0xEE, 0xA6, 0x59, 0x79 },   // ID = 201 / Schlüssel
-  //{ 0xAE, 0x80, 0x4B, 0x77 },   // ID = 202 / Schlüssel
+  { 0xEE, 0xA6, 0x59, 0x79 },   // ID = 201 / Schlüssel
+  { 0xAE, 0x80, 0x4B, 0x77 },   // ID = 202 / Schlüssel
   //{ 0xE0, 0x54, 0x67, 0x92 },   // ID = 203 / Schlüssel
   //{ 0x5E, 0xC5, 0x42, 0x77 },   // ID = 204 / Schlüssel
   //{ 0x84, 0x5E, 0xAB, 0x4D },   // ID = 205 / Schlüssel
@@ -47,17 +52,17 @@ byte bekannteKarten[14][4] =
   { 0xA4, 0xA3, 0x5F, 0xA7 }    // ID = 208 / Schlüssel
 };
 
-char bekannteUser[14][20] =
+char bekannteUser[numberKeysAssignedToPeople][20] =
 {
-  { "Stefan" },         // ID = 100
+  { "SFM" },         // ID = 100
   { "Haiko" },          // ID = 101
   { "anderer Tobi" },   // ID = 102
   { "Kalle" },          // ID = 103
   { "Patrick" },        // ID = 104
   //{ "neue 105" },       // ID = 105
   
-  //{ "neue 201" },       // ID = 201
-  //{ "neue 202" },       // ID = 202
+  { "Johannes" },       // ID = 201
+  { "Cpt.Slow" },       // ID = 202
   //{ "neue 203" },       // ID = 203
   //{ "neue 204" },       // ID = 204
   //{ "neue 205" },       // ID = 205
