@@ -35,15 +35,15 @@ byte bekannteKarten[14][4] =
   { 0x04, 0xAA, 0x00, 0xBA },   // ID = 102 / Karte
   { 0x04, 0xA7, 0x88, 0x7A },   // ID = 103 / Karte
   { 0x04, 0x78, 0xD2, 0xBA },   // ID = 104 / Karte
-  { 0x04, 0x55, 0x90, 0x7A },   // ID = 105 / Karte
+  //{ 0x04, 0x55, 0x90, 0x7A },   // ID = 105 / Karte
   
-  { 0xEE, 0xA6, 0x59, 0x79 },   // ID = 201 / Schlüssel
-  { 0xAE, 0x80, 0x4B, 0x77 },   // ID = 202 / Schlüssel
-  { 0xE0, 0x54, 0x67, 0x92 },   // ID = 203 / Schlüssel
-  { 0x5E, 0xC5, 0x42, 0x77 },   // ID = 204 / Schlüssel
-  { 0x84, 0x5E, 0xAB, 0x4D },   // ID = 205 / Schlüssel
-  { 0xCE, 0x65, 0x45, 0x77 },   // ID = 206 / Schlüssel
-  { 0x3C, 0x64, 0x7D, 0x22 },   // ID = 207 / Schlüssel
+  //{ 0xEE, 0xA6, 0x59, 0x79 },   // ID = 201 / Schlüssel
+  //{ 0xAE, 0x80, 0x4B, 0x77 },   // ID = 202 / Schlüssel
+  //{ 0xE0, 0x54, 0x67, 0x92 },   // ID = 203 / Schlüssel
+  //{ 0x5E, 0xC5, 0x42, 0x77 },   // ID = 204 / Schlüssel
+  //{ 0x84, 0x5E, 0xAB, 0x4D },   // ID = 205 / Schlüssel
+  //{ 0xCE, 0x65, 0x45, 0x77 },   // ID = 206 / Schlüssel
+  //{ 0x3C, 0x64, 0x7D, 0x22 },   // ID = 207 / Schlüssel
   { 0xA4, 0xA3, 0x5F, 0xA7 }    // ID = 208 / Schlüssel
 };
 
@@ -54,15 +54,15 @@ char bekannteUser[14][20] =
   { "anderer Tobi" },   // ID = 102
   { "Kalle" },          // ID = 103
   { "Patrick" },        // ID = 104
-  { "neue 105" },       // ID = 105
+  //{ "neue 105" },       // ID = 105
   
-  { "neue 201" },       // ID = 201
-  { "neue 202" },       // ID = 202
-  { "neue 203" },       // ID = 203
-  { "neue 204" },       // ID = 204
-  { "neue 205" },       // ID = 205
-  { "neue 206" },       // ID = 206
-  { "neue 207" },       // ID = 207
+  //{ "neue 201" },       // ID = 201
+  //{ "neue 202" },       // ID = 202
+  //{ "neue 203" },       // ID = 203
+  //{ "neue 204" },       // ID = 204
+  //{ "neue 205" },       // ID = 205
+  //{ "neue 206" },       // ID = 206
+  //{ "neue 207" },       // ID = 207
   { "Tobi" }            // ID = 208
 };
 
@@ -86,8 +86,6 @@ void setup() {
   }
 
   u8g.sleepOn();
-
-  Serial.println("Start main loop.");
 }
 
 void loop() {
@@ -101,22 +99,22 @@ void loop() {
     return;
   }
 
-  Serial.println("NewCard, trie to READ");
+  Serial.println("NewCard detected, trie to READ.");
   
   // Verify if the NUID has been readed
   if ( ! rfid.PICC_ReadCardSerial())
     return;
 
-  Serial.println(rfid.uid.sak);
   MFRC522::PICC_Type piccType = rfid.PICC_GetType(rfid.uid.sak);
+  
+  Serial.print("NewCard type is: ");
   Serial.println(piccType);
   
   // Check is the PICC of Classic MIFARE type
   if (piccType != MFRC522::PICC_TYPE_MIFARE_MINI &&
       piccType != MFRC522::PICC_TYPE_MIFARE_1K &&
       piccType != MFRC522::PICC_TYPE_MIFARE_4K &&
-      piccType != MFRC522::PICC_TYPE_MIFARE_UL &&
-      piccType != MFRC522::PICC_TYPE_ISO_14443_4) {
+      piccType != MFRC522::PICC_TYPE_MIFARE_UL {
     ledError();
     return;
   }
@@ -126,10 +124,10 @@ void loop() {
     nuidPICC[i] = rfid.uid.uidByte[i];
   }
 
-  Serial.print("Hex: ");
+  Serial.print("NewCard Serial Hex: ");
   printHex(rfid.uid.uidByte, rfid.uid.size);
   Serial.println("");
-  Serial.print("Dec: ");
+  Serial.print("NewCard Serial Dec: ");
   printDec(rfid.uid.uidByte, rfid.uid.size);
 
   // check if users card id is in the list of VIPs
@@ -148,7 +146,9 @@ void loop() {
 
   if (accessGranted == true)
   {    
-    Serial.println(accessGrantedFor);
+    accessGranted = false;
+    
+    Serial.print(accessGrantedFor);
     Serial.println(" will rein!");
     
     ringTheBell();
@@ -162,11 +162,10 @@ void loop() {
     u8g.sleepOff();
     
     ledSuccess();
-    accessGranted = false;
   }
   else
   {
-    Serial.println(F("Nur ruhig Brauner. Immer das selbe mit den Typen in den braunen Uniformen."));
+    Serial.println(F("ULF - Unbekannte Lebensform."));
     ledError();
   }
 
