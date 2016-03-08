@@ -10,7 +10,6 @@ As today, all needed libraries can be found in the Arduino IDE (Sketch -> Includ
 * [u8glib by olikraus](https://github.com/olikraus/u8glib)
 * [Adafruit_NeoPixel by Adafruit](https://github.com/adafruit/Adafruit_NeoPixel)
 * SPI (arduino default installed lib)
-* String (arduino default instaled lib)
 
 ## Parts used
 The Fritzing files a rough draft and can only used as excample.
