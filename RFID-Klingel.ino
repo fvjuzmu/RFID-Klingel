@@ -30,7 +30,7 @@ char accessGrantedFor[20];
 // ATTENTION !!!!!!
 // if you uncomment/comment a key, don't forget to update the number of keys sssigned to people. This is the First value of the multidimensional arrays bekannteKarten + bekannteUser!!!!
 
-byte bekannteKarten[10][4] =
+byte bekannteKarten[11][4] =
 {
   { 0x32, 0x8E, 0x15, 0xDB },   // ID = 100 / Karte
   { 0x04, 0x3E, 0xF1, 0xBA },   // ID = 101 / Karte
@@ -43,13 +43,13 @@ byte bekannteKarten[10][4] =
   { 0xAE, 0x80, 0x4B, 0x77 },   // ID = 202 / Schlüssel
   { 0xE0, 0x54, 0x67, 0x92 },   // ID = 203 / Schlüssel
   { 0x5E, 0xC5, 0x42, 0x77 },   // ID = 204 / Schlüssel
-  //{ 0x84, 0x5E, 0xAB, 0x4D },   // ID = 205 / Schlüssel
+  { 0x84, 0x5E, 0xAB, 0x4D },   // ID = 205 / Schlüssel
   //{ 0xCE, 0x65, 0x45, 0x77 },   // ID = 206 / Schlüssel
   //{ 0x3C, 0x64, 0x7D, 0x22 },   // ID = 207 / Schlüssel
   { 0xA4, 0xA3, 0x5F, 0xA7 }    // ID = 208 / Schlüssel
 };
 
-char bekannteUser[10][20] =
+char bekannteUser[11][20] =
 {
   { "SFM" },         // ID = 100
   { "Haiko" },          // ID = 101
@@ -62,14 +62,15 @@ char bekannteUser[10][20] =
   { "Cpt.Slow" },       // ID = 202
   { "Musiker1" },       // ID = 203
   { "Musiker2" },       // ID = 204
-  //{ "neue 205" },       // ID = 205
+  { "Sandra" },       // ID = 205
   //{ "neue 206" },       // ID = 206
   //{ "neue 207" },       // ID = 207
   { "Tobi" }            // ID = 208
 };
 
-void setup() {
-  Serial.begin(9600);
+void setup() 
+{
+  //Serial.begin(9600);
   SPI.begin(); // Init SPI bus
   rfid.PCD_Init(); // Init MFRC522
 
@@ -131,10 +132,19 @@ void loop() {
   Serial.println("");
   Serial.print("NewCard Serial Dec: ");
   printDec(rfid.uid.uidByte, rfid.uid.size);
+  Serial.println("");
 
   // check if users card id is in the list of VIPs
-  for (int y = 0; y <= sizeof(bekannteKarten); y++)
+  Serial.print("Number known Cards ");
+  Serial.print(sizeof(bekannteKarten));
+  Serial.println("");
+  
+  for (int y = 0; y < sizeof(bekannteKarten)/4; y++)
   {
+    strncpy(accessGrantedFor, bekannteUser[y], 20);
+    Serial.print("Is ringing user ");
+    Serial.print(accessGrantedFor);
+    Serial.print("... ");
     if (bekannteKarten[y][0] == nuidPICC[0] &&
         bekannteKarten[y][1] == nuidPICC[1] &&
         bekannteKarten[y][2] == nuidPICC[2] &&
@@ -142,7 +152,14 @@ void loop() {
     {
       accessGranted = true;
       strncpy(accessGrantedFor, bekannteUser[y], 20);
+      Serial.print(" yes");
+      Serial.println("");
       break;
+    }
+    else
+    {
+      Serial.print(" no");
+      Serial.println("");
     }
   }
 
@@ -167,7 +184,7 @@ void loop() {
   }
   else
   {
-    Serial.println(F("ULF - Unbekannte Lebensform."));
+    Serial.println("ULF - Unbekannte Lebensform.");
     ledError();
   }
 
