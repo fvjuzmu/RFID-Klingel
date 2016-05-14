@@ -30,7 +30,7 @@ char accessGrantedFor[20];
 // ATTENTION !!!!!!
 // if you uncomment/comment a key, don't forget to update the number of keys sssigned to people. This is the First value of the multidimensional arrays bekannteKarten + bekannteUser!!!!
 
-byte bekannteKarten[13][4] =
+byte bekannteKarten[16][4] =
 {
   { 0x32, 0x8E, 0x15, 0xDB },   // ID = 100 / Karte
   { 0x04, 0x3E, 0xF1, 0xBA },   // ID = 101 / Karte
@@ -38,7 +38,14 @@ byte bekannteKarten[13][4] =
   { 0x04, 0xA7, 0x88, 0x7A },   // ID = 103 / Karte
   { 0x04, 0x78, 0xD2, 0xBA },   // ID = 104 / Karte
   //{ 0x04, 0x55, 0x90, 0x7A },   // ID = 105 / Karte
-  
+  { 0x04, 0x92, 0xD5, 0x8A },   // ID = 106 / Karte
+  //{ 0x04, 0x2A, 0xB5, 0x8A },   // ID = 107 / Karte
+  //{ 0x04, 0xF5, 0xF2, 0x8A },   // ID = 108 / Karte
+  //{ 0x04, 0xE0, 0xBE, 0x8A },   // ID = 109 / Karte
+
+  { 0x04, 0xB4, 0xD2, 0x8A },   // ID = 110 / Karte
+
+  //{ 0x3E, 0xAE, 0x4B, 0x77 }    // ID = 200 / Schlüssel
   { 0xEE, 0xA6, 0x59, 0x79 },   // ID = 201 / Schlüssel
   { 0xAE, 0x80, 0x4B, 0x77 },   // ID = 202 / Schlüssel
   { 0xE0, 0x54, 0x67, 0x92 },   // ID = 203 / Schlüssel
@@ -46,26 +53,44 @@ byte bekannteKarten[13][4] =
   { 0x84, 0x5E, 0xAB, 0x4D },   // ID = 205 / Schlüssel
   { 0xCE, 0x65, 0x45, 0x77 },   // ID = 206 / Schlüssel
   { 0x3C, 0x64, 0x7D, 0x22 },   // ID = 207 / Schlüssel
-  { 0xA4, 0xA3, 0x5F, 0xA7 }    // ID = 208 / Schlüssel
+  { 0xA4, 0xA3, 0x5F, 0xA7 },   // ID = 208 / Schlüssel
+  { 0x9E, 0xD3, 0x4A, 0x77 }    // ID = 209 / Schlüssel
+  
+  //{ 0x9E, 0xCE, 0x47, 0x77 },   // ID = 210 / Schlüssel
+  //{ 0x4E, 0x31, 0x47, 0x77 },   // ID = 211 / Schlüssel
+  //{ 0x1E, 0x0B, 0x4B, 0x77 }   // ID = 212 / Schlüssel
+
 };
 
-char bekannteUser[13][20] =
+char bekannteUser[16][20] =
 {
-  { "SFM" },         // ID = 100
+  { "SFM" },            // ID = 100
   { "Haiko" },          // ID = 101
   { "anderer Tobi" },   // ID = 102
   { "Kalle" },          // ID = 103
   { "Patrick" },        // ID = 104
-  //{ "neue 105" },       // ID = 105
+  //{ "neue 105" },     // ID = 105
+  { "Michael" },        // ID = 106
+  //{ "neue 107" },     // ID = 107
+  //{ "neue 108" },     // ID = 108
+  //{ "neue 109" },     // ID = 109
   
+  { "Maren" },          // ID = 110
+
+  //{ "neue 200" },     // ID = 200
   { "Johannes" },       // ID = 201
   { "Cpt.Slow" },       // ID = 202
   { "Musiker1" },       // ID = 203
   { "Musiker2" },       // ID = 204
-  { "Sandra" },       // ID = 205
-  { "Robärt" },       // ID = 206
-  { "Siggi" },       // ID = 207
-  { "Tobi" }            // ID = 208
+  { "Sandra" },         // ID = 205
+  { "Robärt" },         // ID = 206
+  { "Siggi" },          // ID = 207
+  { "Tobi" },           // ID = 208
+  { "David" }           // ID = 209
+  
+  //{ "neue 210" },     // ID = 210
+  //{ "neue 211" },     // ID = 211
+  //{ "neue 212" },     // ID = 212
 };
 
 void setup() 
