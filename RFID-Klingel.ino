@@ -30,7 +30,7 @@ char accessGrantedFor[20];
 // ATTENTION !!!!!!
 // if you uncomment/comment a key, don't forget to update the number of keys sssigned to people. This is the First value of the multidimensional arrays bekannteKarten + bekannteUser!!!!
 
-byte bekannteKarten[16][4] =
+byte bekannteKarten[17][4] =
 {
   { 0x32, 0x8E, 0x15, 0xDB },   // ID = 100 / Karte
   { 0x04, 0x3E, 0xF1, 0xBA },   // ID = 101 / Karte
@@ -39,7 +39,7 @@ byte bekannteKarten[16][4] =
   { 0x04, 0x78, 0xD2, 0xBA },   // ID = 104 / Karte
   //{ 0x04, 0x55, 0x90, 0x7A },   // ID = 105 / Karte
   { 0x04, 0x92, 0xD5, 0x8A },   // ID = 106 / Karte
-  //{ 0x04, 0x2A, 0xB5, 0x8A },   // ID = 107 / Karte
+  { 0x04, 0x2A, 0xB5, 0x8A },   // ID = 107 / Karte
   //{ 0x04, 0xF5, 0xF2, 0x8A },   // ID = 108 / Karte
   //{ 0x04, 0xE0, 0xBE, 0x8A },   // ID = 109 / Karte
 
@@ -62,7 +62,7 @@ byte bekannteKarten[16][4] =
 
 };
 
-char bekannteUser[16][20] =
+char bekannteUser[17][20] =
 {
   { "SFM" },            // ID = 100
   { "Haiko" },          // ID = 101
@@ -71,7 +71,7 @@ char bekannteUser[16][20] =
   { "Patrick" },        // ID = 104
   //{ "neue 105" },     // ID = 105
   { "Michael" },        // ID = 106
-  //{ "neue 107" },     // ID = 107
+  { "Manuel" },         // ID = 107
   //{ "neue 108" },     // ID = 108
   //{ "neue 109" },     // ID = 109
   
