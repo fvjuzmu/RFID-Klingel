@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/fvjuzmu/RFID-Klingel.svg?branch=master)](https://travis-ci.org/fvjuzmu/RFID-Klingel)
+
 # RFID-Klingel
 Arduiono and RFID based Klingel (german for bell).
 It will only ring if a know rfid key is read on the door.
