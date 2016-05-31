@@ -20,7 +20,7 @@ install:
     # http://platformio.org/lib/show/7/U8glib
     # http://platformio.org/lib/show/28/Adafruit-NeoPixel
     # http://platformio.org/lib/show/63/MFRC522
-    - platformio lib install 1 28 63
+    - platformio lib install 7 28 63
 
 script:
     - platformio ci --board=uno
