@@ -45,7 +45,7 @@ byte bekannteKarten[18][4] =
 
   { 0x04, 0xB4, 0xD2, 0x8A },   // ID = 110 / Karte
 
-  { 0x3E, 0xAE, 0x4B, 0x77 }    // ID = 200 / Schlüssel
+  { 0x3E, 0xAE, 0x4B, 0x77 },   // ID = 200 / Schlüssel
   { 0xEE, 0xA6, 0x59, 0x79 },   // ID = 201 / Schlüssel
   { 0xAE, 0x80, 0x4B, 0x77 },   // ID = 202 / Schlüssel
   { 0xE0, 0x54, 0x67, 0x92 },   // ID = 203 / Schlüssel
@@ -77,7 +77,7 @@ char bekannteUser[18][20] =
   
   { "Maren" },          // ID = 110
 
-  { "KP" },     // ID = 200
+  { "KP" },             // ID = 200
   { "Johannes" },       // ID = 201
   { "Cpt.Slow" },       // ID = 202
   { "Musiker1" },       // ID = 203
